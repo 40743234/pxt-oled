@@ -1,4 +1,4 @@
-# LumexOLED
+# Game & Watch
 
 Game & Watch for micro:bit
 
