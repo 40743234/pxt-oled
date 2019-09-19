@@ -67,7 +67,7 @@ namespace lumexoled {
     export enum Delimiters {
     //% block="parachute"
     NewLine = 1,
-    //% block="cat"
+    //% block="dog"
     Comma = 2
     }
     //% blockId="delimiters" block="%del"
