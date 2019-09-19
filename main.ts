@@ -64,6 +64,19 @@ namespace lumexoled {
         //% block="outside in"
         type2 = 1
     }
+    export enum Delimiters {
+    //% block="parachute"
+    NewLine = 1,
+    //% block="cat"
+    Comma = 2
+    }
+    //% blockId="delimiters" block="%del"
+    export function delimiters(del : Delimiters) : number[] {
+    switch(del) {
+        case Delimiters.NewLine: return [255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255];
+    }
+}
+    
 
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
