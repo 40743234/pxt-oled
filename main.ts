@@ -2,7 +2,7 @@
 * LUMEX OLED顯示器的函數
 */
 
-//% weight=0 color=#ff9933 icon="\uf109" block="LumexOLED"
+//% weight=0 color=#ff9933 icon="\uf109" block="Game&Watch"
 namespace lumexoled {
     export enum fontSize {
         //% block="5*7"
