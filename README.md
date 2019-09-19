@@ -1,6 +1,6 @@
 # LumexOLED
 
-LumexOLED driver for micro:bit
+Game & Watch for micro:bit
 
 
 ## License
