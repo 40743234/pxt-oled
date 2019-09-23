@@ -67,12 +67,12 @@ namespace lumexoled {
     export enum Delimiters {
     //% block="parachute"
     NewLine = 1,
-    //% block="dog"
+    //% block="cat"
     Comma = 2
     }
-    let parachute = [];
+    let parachute : number[];
     parachute = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 63, 224, 0, 0, 119, 248, 0, 0, 231, 252, 0, 1, 207, 238, 0, 1, 255, 238, 0, 1, 255, 255, 0, 1, 4, 127, 0, 0, 128, 7, 0, 0, 0, 3, 0, 0, 33, 194, 0, 0, 3, 240, 0, 0, 3, 248, 0, 0, 1, 160, 0, 0, 29, 192, 0, 0, 11, 248, 0, 0, 1, 232, 0, 0, 5, 192, 0, 0, 6, 192, 0, 0, 0, 64, 0, 0, 0, 112, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    //% blockId="delimiters" block="%del"
+    //% blockId="delimiters" block="%del" color=#6D33FF 
     export function delimiters(del : Delimiters) : number[] {
     switch(del) {
         case Delimiters.NewLine: return parachute; 
