@@ -322,36 +322,4 @@ namespace lumexoled {
         }
     }
 
-    //% blockId="OLED_setTransition" block="scroll the whole display %transition|shift time(1~200ms) %time"
-    //% weight=69 blockGap=0 time.min=1 time.max=200
-    export function OLED_setTransition(transition: transitionType, time: number): void {
-        if (time < 1)
-            time = 1
-        if (time > 200)
-            time = 200
-        let myBuff2 = pins.createBuffer(2)
-        myBuff2.setNumber(NumberFormat.Int8BE, 0, transition + 0xd2)
-        myBuff2.setNumber(NumberFormat.Int8BE, 1, time)
-        serial.writeBuffer(myBuff2)
-        serial.readUntil("E")
-        basic.pause(10)
-    }
-    //% blockId="OLED_setSecTransition" block="scroll the section display %transition|section up left corner X: %x0|up left corner Y: %y0|bottom right corner X: %x1|borrom right corner Y: %y1|shift time(1~200ms) %time"
-    //% weight=68 blockGap=0 x0.min=0 x0.max=127 y0.min=0 y0.max=63 x1.min=0 x1.max=127 y1.min=0 y1.max=63 time.min=1 time.max=200
-    export function OLED_setSecTransition(transition: transitionType, x0: number, y0: number, x1: number, y1: number, time: number): void {
-        if (time < 1)
-            time = 1
-        if (time > 200)
-            time = 200
-        let myBuff6 = pins.createBuffer(6)
-        myBuff6.setNumber(NumberFormat.Int8BE, 0, transition + 0xd6)
-        myBuff6.setNumber(NumberFormat.Int8BE, 1, x0)
-        myBuff6.setNumber(NumberFormat.Int8BE, 2, y0)
-        myBuff6.setNumber(NumberFormat.Int8BE, 3, x1)
-        myBuff6.setNumber(NumberFormat.Int8BE, 4, y1)
-        myBuff6.setNumber(NumberFormat.Int8BE, 5, time)
-        serial.writeBuffer(myBuff6)
-        serial.readUntil("E")
-        basic.pause(10)
-    }
 }   
