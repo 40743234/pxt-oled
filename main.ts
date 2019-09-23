@@ -134,17 +134,6 @@ namespace lumexoled {
         basic.pause(10)
     }
 
-    //% blockId="OLED_setBrightess" block="set OLED brightness %brightness"
-    //% weight=90 blockGap=0 brightness.min=1 brightness.max=255
-    export function OLED_setBrightness(brightness: number): void {
-        let myBuff2 = pins.createBuffer(2)
-        myBuff2.setNumber(NumberFormat.UInt8BE, 0, 0xf2)
-        myBuff2.setNumber(NumberFormat.UInt8BE, 1, brightness)
-        serial.writeBuffer(myBuff2)
-        serial.readUntil("E")
-        basic.pause(10)
-    }
-
     //% blockId="OLED_putString" block="OLED put string: %myStr|size: %mySize|on line: %line|column: %column|display %showState"
     //% weight=85 blockGap=0 blockExternalInputs=true line.min=0 line.max=7 column.min=0 column.max=20
     export function putString(myStr: string, mySize: fontSize, line: number, column: number, showState: showNow): void {
