@@ -64,26 +64,12 @@ namespace lumexoled {
         //% block="outside in"
         type2 = 1
     }
-    export enum mycharacter {
-        //%block="parachute"
-        type1 = 0,
-        //%block="boat"
-        type2 = 1,
-        //%block="cat"
-        type3 = 2    
+    export enum Delimiters {
+    //% block="parachute"
+    NewLine = 1,
+    //% block="cat"
+    Comma = 2
     }
-    /*
-    //% blockId="OLED_showImage" block="Set character: %character|x-axis: %x|y-axis: %y"
-    //% weight=98 blockGap=0 blockExternalInputs=true advanced=true inlineInputMode=inline
-    export function OLED_showImage(character: mycharacter, x: number, y: number): void {
-        let myBuff4 = pins.createBuffer(4)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 0, x)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 1, y)
-        serial.writeBuffer(myBuff4)
-        serial.readUntil("E")
-        basic.pause(10)
-    }
-    */
    
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
