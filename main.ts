@@ -74,7 +74,7 @@ namespace lumexoled {
     }
     //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
     //% weight=98 blockGap=0 blockExternalInputs=true advanced=true inlineInputMode=inline
-    export function game_xy(character: mycharacter, x: number, y: number): void {
+    export function game_xy(character: number[], x: number, y: number): void {
         let myBuff4 = pins.createBuffer(4)
         myBuff4.setNumber(NumberFormat.UInt8BE, 0, x)
         myBuff4.setNumber(NumberFormat.UInt8BE, 1, y)
