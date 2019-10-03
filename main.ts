@@ -76,12 +76,13 @@ namespace lumexoled {
     //% weight=98 blockGap=0 blockExternalInputs=true advanced=true inlineInputMode=inline
     export function game_xy(character: number[], x: number, y: number): void {
         let myBuff4 = pins.createBuffer(4)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 0, x)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 1, y)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 2, y)
         serial.writeBuffer(myBuff4)
         serial.readUntil("E")
         basic.pause(10)
     }
+
    
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
