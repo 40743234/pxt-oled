@@ -73,17 +73,6 @@ namespace lumexoled {
         type3 = 2    
     }
 
-    //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
-    //% weight=98 blockGap=0 blockExternalInputs=true advanced=true inlineInputMode=inline
-    export function game_xy(character: number[], x: number, y: number): void {
-        let myBuff4 = pins.createBuffer(3)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
-        myBuff4.setNumber(NumberFormat.UInt8BE, 2, y)
-        serial.writeBuffer(myBuff4)
-        serial.readUntil("E")
-        basic.pause(10)
-    }
-
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
@@ -218,6 +207,17 @@ namespace lumexoled {
         if (showState == 0xd1) {
             OLED_display()
         }
+    }
+       //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
+    //% weight=98 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true inlineInputMode=inline
+    export function game_xy(myID: number, x: number, y: number): void {
+        let myBuff4 = pins.createBuffer(3)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 0, myID)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 2, y)
+        serial.writeBuffer(myBuff4)
+        serial.readUntil("E")
+        basic.pause(10)
     }
 }   
 
