@@ -64,20 +64,26 @@ namespace lumexoled {
         //% block="outside in"
         type2 = 1
     }
-    export enum Delimiters {
-    //% block="parachute"
-    NewLine = 1,
-    //% block="cat"
-    Comma = 2
+    export enum mycharacter {
+        //%block="parachute"
+        type1 = 0,
+        //%block="boat"
+        type2 = 1,
+        //%block="cat"
+        type3 = 2    
     }
-    var parachute = new Array();
-    let parachute = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 63, 224, 0, 0, 119, 248, 0, 0, 231, 252, 0, 1, 207, 238, 0, 1, 255, 238, 0, 1, 255, 255, 0, 1, 4, 127, 0, 0, 128, 7, 0, 0, 0, 3, 0, 0, 33, 194, 0, 0, 3, 240, 0, 0, 3, 248, 0, 0, 1, 160, 0, 0, 29, 192, 0, 0, 11, 248, 0, 0, 1, 232, 0, 0, 5, 192, 0, 0, 6, 192, 0, 0, 0, 64, 0, 0, 0, 112, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    //% blockId="delimiters" block="%del" color=#ff0000 
-    export function delimiters(del : Delimiters) : number[] {
-    switch(del) {
-        case Delimiters.NewLine: return parachute; 
-         }
+
+    //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
+    //% weight=98 blockGap=0 blockExternalInputs=true advanced=true inlineInputMode=inline
+    export function game_xy(character: number[], x: number, y: number): void {
+        let myBuff4 = pins.createBuffer(3)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 2, y)
+        serial.writeBuffer(myBuff4)
+        serial.readUntil("E")
+        basic.pause(10)
     }
+
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
