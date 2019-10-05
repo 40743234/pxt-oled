@@ -76,6 +76,7 @@ namespace lumexoled {
     export function delimiters(del : Delimiters) : number[] {
     switch(del) {
         case Delimiters.NewLine: return parachute; 
+         }
     }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
