@@ -78,9 +78,9 @@ namespace lumexoled {
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
         basic.pause(100)
         serial.redirect(
-            pinRX,
-            pinTX,
-            br
+            P14,
+            P13,
+            115520
         )
         serial.readUntil("E")
         basic.pause(100)
