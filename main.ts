@@ -72,7 +72,12 @@ namespace lumexoled {
         //%block="rat"
         type3 = 2    
     }
-
+    //% blockId="character" block="%cha"
+    //% weight=83 blockExternalInputs=true blockGap=0
+    export function character(cha : mycharacter) : number[] {
+    
+        return cha;
+    }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
@@ -175,7 +180,7 @@ namespace lumexoled {
 
     //% blockId="OLED_setImage" block="set image array %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
     //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true
-    export function OLED_setImage(myArray: mycharacter, myType: patternType, myPositive: positiveType, myID: number): void {
+    export function OLED_setImage(myArray: number[] , myType: patternType, myPositive: positiveType, myID: number): void {
         let myBuff2 = pins.createBuffer(2)
         let myBuff1 = pins.createBuffer(1)
         myBuff2.setNumber(NumberFormat.UInt8BE, 0, myType)
