@@ -76,7 +76,7 @@ namespace lumexoled {
     //% weight=83 blockExternalInputs=true blockGap=0
     export function character(cha : mycharacter) : number[] {
     
-        return cha;
+        return mycharacter.type1;
     }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
