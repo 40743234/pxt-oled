@@ -13,8 +13,6 @@ namespace lumexoled {
     export enum showNow {
         //% block="now"
         yes = 0xd1,
-        //% block="later"
-        no = 0x00
     }
     export enum patternType {
         //% block="8*8"
