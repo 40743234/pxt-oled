@@ -4,6 +4,11 @@
 
 //% weight=0 color=#ff9933 icon="\uf109" block="Game&Watch"
 namespace lumexoled {
+    
+    export let par: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 63, 224, 0, 0, 119, 248, 0, 0, 231, 252, 0, 1, 207, 238, 0, 1, 255, 238, 0, 1, 255, 255, 0, 1, 4, 127, 0, 0, 128, 7, 0, 0, 0, 3, 0, 0, 33, 194, 0, 0, 3, 240, 0, 0, 3, 248, 0, 0, 1, 160, 0, 0, 29, 192, 0, 0, 11, 248, 0, 0, 1, 232, 0, 0, 5, 192, 0, 0, 6, 192, 0, 0, 0, 64, 0, 0, 0, 112, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    
+    
+    
     export enum fontSize {
         //% block="5*7"
         smallSize = 0x81,
@@ -72,7 +77,7 @@ namespace lumexoled {
     //% weight=83 blockExternalInputs=true blockGap=0
     export function character(cha : mycharacter) : number[] {
     
-        return mycharacter.type1;
+        return par;
     }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
