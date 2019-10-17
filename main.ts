@@ -20,20 +20,12 @@ namespace lumexoled {
         yes = 0xd1,
     }
     export enum patternType {
-        //% block="8*8"
-        type1 = 0xc0,
-        //% block="8*16"
-        type2 = 0xc1,
         //% block="16*16"
         type3 = 0xc2,
         //% block="32*32"
         type4 = 0xc3
     }
     export enum imageType {
-        //% block="8*8"
-        type1 = 0xc4,
-        //% block="8*16"
-        type2 = 0xc5,
         //% block="16*16"
         type3 = 0xc6,
         //% block="32*32"
