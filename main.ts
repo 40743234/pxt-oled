@@ -96,12 +96,12 @@ namespace lumexoled {
     }
 }
     
-    //% blockId="character" block="%cha"
+  /*  //% blockId="character" block="%cha"
     //% weight=83 blockExternalInputs=true blockGap=0
     export function character(cha : mycharacter) : number[] {
     
        return mycharacter
-    }
+    }*/
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
