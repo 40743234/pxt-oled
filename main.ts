@@ -123,3 +123,4 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(10)
     }
+}
