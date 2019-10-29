@@ -81,7 +81,7 @@ namespace lumexoled {
     }
     //% blockId="character" block="%del"
     //weight=9
-    export function delimiters(del : mycharacter) : number[] {
+    export function delimiters(del : mycharacter) : number {
         switch(del) { 
          case mycharacter.type1: return array0;
          case mycharacter.type2: return array1;
