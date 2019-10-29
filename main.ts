@@ -65,8 +65,10 @@ namespace lumexoled {
     //% blockId="test" block="%length "
     //%  weight=50 
     export function arraylength(): number {
-        return array0.length;
-}
+        let array4: number[]
+            array4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 31, 0, 0, 0, 63, 128, 0, 0, 127, 0, 0, 0, 255, 0, 0, 1, 246, 0, 0, 3, 236, 0, 0, 7, 204, 0, 0, 7, 216, 0, 0, 15, 248, 0, 0, 12, 112, 0, 0, 0, 96, 0, 0, 56, 192, 0, 0, 124, 48, 0, 0, 124, 240, 0, 0, 255, 240, 0, 0, 223, 128, 0, 0, 31, 192, 0, 0, 3, 192, 0, 0, 31, 128, 0, 0, 31, 128, 0, 0, 1, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        return array4.length;
+    }
     enum mycharacter {
         //%block="parachute1"
         type1=1,
