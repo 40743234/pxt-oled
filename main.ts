@@ -85,7 +85,7 @@ namespace lumexoled {
         switch(del) { 
          case mycharacter.type1: return array0;
          case mycharacter.type2: return array1;
-         case mycharacter.type3: return array2;
+         case mycharacter.type3: return array2.length;
     }
 }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
