@@ -63,8 +63,6 @@ namespace lumexoled {
     let array2: number[]
        array2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 192, 0, 0, 3, 224, 0, 0, 3, 248, 0, 0, 1, 112, 0, 0, 29, 128, 0, 0, 31, 144, 0, 0, 1, 252, 0, 0, 1, 192, 0, 0, 7, 192, 0, 0, 6, 64, 0, 0, 0, 96, 0, 0, 0, 112, 0, 0, 0, 0, 0]
   */
-    var array0 = new Array(10);
-    array0[0]= 0, array0[1]= 0, array0[2]= 0, array0[3]= 0, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
     enum mycharacter {
         //%block="parachute1"
         type1=1,
@@ -76,10 +74,13 @@ namespace lumexoled {
     //% blockId="character" block="%del"
     //weight=9
     export function delimiters(del : mycharacter) : number[] {
+        var array0 = new Array(10);
+        array0[0]= 0, array0[1]= 0, array0[2]= 0, array0[3]= 0, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
+    
         switch(del) { 
          case mycharacter.type1: return array0;
-         case mycharacter.type2: return array1;
-         case mycharacter.type3: return array2;
+     //    case mycharacter.type2: return array1;
+     //    case mycharacter.type3: return array2;
     }
 }
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
