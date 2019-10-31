@@ -74,11 +74,11 @@ namespace lumexoled {
     //% blockId="character" block="%del"
     //weight=9
     export function delimiters(del : mycharacter) : number[] {
-        var array0 = new Array(10);
-        array0[0]= 0, array0[1]= 0, array0[2]= 0, array0[3]= 0, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
+        var array0 = [0,1,2,3,4,5,6,7,8,9];
+        array0[0]= 2, array0[1]= 0, array0[2]= 0, array0[3]= 0, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
     
         switch(del) { 
-         case mycharacter.type1: return array0;
+           case mycharacter.type1: return array0;
      //    case mycharacter.type2: return array1;
      //    case mycharacter.type3: return array2;
     }
