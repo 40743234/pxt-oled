@@ -66,10 +66,12 @@ namespace lumexoled {
     enum mycharacter {
         //%block="parachute1"
         type1=1,
+     /*  
         //%block="parachute2"
         type2=2,
         //%block="parachute3"
         type3=3,
+     */
     }
     //% blockId="character" block="%del"
     //weight=9
