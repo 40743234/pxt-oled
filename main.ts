@@ -80,8 +80,8 @@ namespace lumexoled {
     export function delimiters(del : mycharacter) : number[] {
        // let array0 = new Array();
        //array0[0]= 2, array0[1]= 5, array0[2]= 7, array0[3]= 9, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
-       var  str="10220312";
-       var array2 =str.split(',');
+       var  st="10220312";
+       var array2 =st.split(',');
         switch(del) { 
          case mycharacter.type1: return array0;
          case mycharacter.type2: return array1;
