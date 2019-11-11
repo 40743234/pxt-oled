@@ -83,8 +83,7 @@ namespace lumexoled {
        var array0 = src.split(',').map(parseInt);
         var src1 = "1,3,5,4,3,5,6";
        var array1 = src1.split(',').map(parseInt);
-        var src2 = "1,2,5,4,3,0,9,9";
-       var array2 = src2.split(',').map(parseInt);
+       var array2 = ['10','1','100'].map(function(x) { return parseInt(x, 10); });
         switch(del) { 
          case mycharacter.type1: return array0;
          case mycharacter.type2: return array1;
