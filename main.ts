@@ -55,7 +55,7 @@ namespace lumexoled {
         //% block="outside in"
         type2 = 1
     }
-    var oArray = new Array();
+    var oArray = new Array(3);
     oArray[0]=2,oArray[1]=3,oArray[2]=7;
     /* 
      //let array0: number[]
@@ -78,7 +78,7 @@ namespace lumexoled {
     //% blockId="character" block="%del"
     //weight=9
     export function delimiters(del : mycharacter) : number[] {
-        var array0 = new Array();
+        var array0 = new Array(10);
         array0[0]= 2, array0[1]= 5, array0[2]= 7, array0[3]= 9, array0[4]= 0, array0[5]= 0, array0[6]= 0, array0[7]= 0, array0[8]= 0, array0[9]= 0;
         switch(del) { 
          case mycharacter.type1: return array0;
