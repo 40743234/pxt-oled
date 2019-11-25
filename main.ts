@@ -70,7 +70,7 @@ namespace lumexoled {
         type4 = 4,
     }
     //% blockId="character" block="%del"
-    //weight=9
+    //weight=9 advanced=true
     export function delimiters(del: mycharacter): number[] {
         switch (del) {
             case mycharacter.type1: return array0;
@@ -170,13 +170,17 @@ namespace lumexoled {
     }
     //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
     //% weight=98 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true inlineInputMode=inline
-    export function game_xy(myID: number, x: number, y: number): void {
+    export function game_xy(myType: imageType,myID: number, x: number, y: number, showState: showNow): void {
         let myBuff4 = pins.createBuffer(4)
         myBuff4.setNumber(NumberFormat.UInt8BE, 0, myID)
         myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
         myBuff4.setNumber(NumberFormat.UInt8BE, 2, y)
+        myBuff4.setNumber(NumberFormat.UInt8BE, 3, myID)
         serial.writeBuffer(myBuff4)
         serial.readUntil("E")
         basic.pause(10)
+        if (showState == 0xd1) {
+            OLED_display()
+        }
     }
 }
