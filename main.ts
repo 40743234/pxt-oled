@@ -58,7 +58,7 @@ namespace lumexoled {
     let array2: number[]
     array2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 192, 0, 0, 3, 224, 0, 0, 3, 248, 0, 0, 1, 112, 0, 0, 29, 128, 0, 0, 31, 144, 0, 0, 1, 252, 0, 0, 1, 192, 0, 0, 7, 192, 0, 0, 6, 64, 0, 0, 0, 96, 0, 0, 0, 112, 0, 0, 0, 0, 0]
     let array3: number[]
-    array3 = [255, 254, 127, 254, 63, 248, 31, 240, 31, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    array3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 252, 15, 255, 255, 248, 3, 255, 255, 224, 1, 255, 255, 192, 0, 255, 255, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     export enum mycharacter {
         //%block="parachute1"
         type1 = 1,
@@ -134,7 +134,7 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(10)
     }
-    let cID=0;
+    let cID = 0;
     //% blockId="OLED_setImage" block="set character: %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
     //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_setImage(myArray: number[], myType: patternType, myPositive: positiveType, myID: number): void {
@@ -187,20 +187,18 @@ namespace lumexoled {
         }
     }
     */
-    //% blockId="move" block="character: %character| x-axis: %x| y-axis: %y"
+    //% blockId="move" block="character: %character's x-axis: %x| y-axis: %y"
     //% weight=98 blockGap=0
-   
-    export function move(character: number[],x:number,y:number): void
-     {
-         if(character == array0)
+    export function move(character: number[], x: number, y: number): void {
+        if (character == array0)
             cID = mycharacter.type1;
-         else if (character == array1)
-             cID = mycharacter.type2;
-         else if (character == array2)
-             cID = mycharacter.type3;
-         else if (character == array3)
-             cID = mycharacter.type4;
+        else if (character == array1)
+            cID = mycharacter.type2;
+        else if (character == array2)
+            cID = mycharacter.type3;
+        else if (character == array3)
+            cID = mycharacter.type4;
         OLED_setImage(character, 0xc3, 1, cID)
         OLED_showImage(0xc7, cID, x, y, 0xd1)
-     }
+    }
 }
