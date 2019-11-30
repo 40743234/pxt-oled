@@ -70,7 +70,7 @@ namespace lumexoled {
         type4 = 4,
     }
     //% blockId="character" block="%del"
-    //weight=9 blockExternalInputs=true advanced=true
+    //weight=95 blockGap=0  advanced=true
     export function delimiters(del: mycharacter): number[] {
         switch (del) {
             case mycharacter.type1: return array0;
@@ -116,7 +116,7 @@ namespace lumexoled {
         //serial.readUntil("E")
         basic.pause(20)
     }
-   //% blockId="OLED_on" block="turn OLED on"
+    //% blockId="OLED_on" block="turn OLED on"
     //% weight=92 blockGap=0
     export function OLED_on(): void {
         let myBuff1 = pins.createBuffer(1)
@@ -134,13 +134,15 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(10)
     }
-    //% blockId="OLED_setImage" block="set image array %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
-    //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true
+    let cID=0;
+    //% blockId="OLED_setImage" block="set character: %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
+    //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_setImage(myArray: number[], myType: patternType, myPositive: positiveType, myID: number): void {
         let myBuff2 = pins.createBuffer(2)
         let myBuff1 = pins.createBuffer(1)
         myBuff2.setNumber(NumberFormat.UInt8BE, 0, myType)
         myBuff2.setNumber(NumberFormat.UInt8BE, 1, myID)
+        cID = myID;
         serial.writeBuffer(myBuff2)
         //serial.readUntil("E")
         //basic.pause(10)
@@ -154,7 +156,7 @@ namespace lumexoled {
         basic.pause(10)
     }
     //% blockId="OLED_showImage" block="show image type: %myType|image ID: %myID|on x: %x|y: %y|display %showState"
-    //% weight=82 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true
+    //% weight=82 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_showImage(myType: imageType, myID: number, x: number, y: number, showState: showNow): void {
         let myBuff4 = pins.createBuffer(4)
         myBuff4.setNumber(NumberFormat.UInt8BE, 0, myType)
@@ -168,9 +170,10 @@ namespace lumexoled {
             OLED_display()
         }
     }
+    /*
     //% blockId="game_xy" block="Set character: %character|x-axis: %x|y-axis: %y"
     //% weight=98 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 advanced=true inlineInputMode=inline
-    export function game_xy(myType: imageType,myID: number, x: number, y: number, showState: showNow): void {
+    export function game_xy(myType: imageType, myID: number, x: number, y: number, showState: showNow): void {
         let myBuff4 = pins.createBuffer(4)
         myBuff4.setNumber(NumberFormat.UInt8BE, 0, myID)
         myBuff4.setNumber(NumberFormat.UInt8BE, 1, x)
@@ -183,4 +186,21 @@ namespace lumexoled {
             OLED_display()
         }
     }
+    */
+    //% blockId="move" block="character: %character| x-axis: %x| y-axis: %y"
+    //% weight=98 blockGap=0
+   
+    export function move(character: number[],x:number,y:number): void
+     {
+         if(character == array0)
+            cID = mycharacter.type1;
+         else if (character == array1)
+             cID = mycharacter.type2;
+         else if (character == array2)
+             cID = mycharacter.type3;
+         else if (character == array3)
+             cID = mycharacter.type4;
+        OLED_setImage(character, 0xc3, 1, cID)
+        OLED_showImage(0xc7, cID, x, y, 0xd1)
+     }
 }
