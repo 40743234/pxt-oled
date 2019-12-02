@@ -14,8 +14,6 @@ namespace lumexoled {
         yes = 0xd1,
     }
     export enum patternType {
-        //% block="16*16"
-        type3 = 0xc2,
         //% block="32*32"
         type4 = 0xc3
     }
@@ -61,13 +59,13 @@ namespace lumexoled {
     array3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 252, 15, 255, 255, 248, 3, 255, 255, 224, 1, 255, 255, 192, 0, 255, 255, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     export enum mycharacter {
         //%block="parachute1"
-        type1 = 1,
+        type1 = 0,
         //%block="parachute2"
-        type2 = 2,
+        type2 = 1,
         //%block="parachute3"
-        type3 = 3,
+        type3 = 2,
         //%block="boat"
-        type4 = 4,
+        type4 = 3,
     }
     //% blockId="character" block="%del"
     //weight=95 blockGap=0  advanced=true
