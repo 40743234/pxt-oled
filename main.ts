@@ -79,12 +79,6 @@ namespace lumexoled {
             case mycharacter.type4: return array3;
         }
     }
-    /** 
-     * Setup Lumex Oled Tx Rx to micro:bit pins.
-     * 設定Lumex Oled的Tx、Rx連接腳位
-     * @param pinRX to pinRX ,eg: SerialPin.P14
-     * @param pinTX to pinTX ,eg: SerialPin.P13
-    */
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
@@ -198,7 +192,6 @@ namespace lumexoled {
             cID = mycharacter.type3;
         else if (character == array3)
             cID = mycharacter.type4;
-        OLED_setImage(character, 0xc3, 1, cID)
         OLED_showImage(0xc7, cID, x, y, 0xd1)
     }
 }
