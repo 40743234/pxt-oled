@@ -97,7 +97,7 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(100)
         OLED_clear()
-        
+
     }
 
     //% weight=94 blockGap=0
@@ -141,7 +141,7 @@ namespace lumexoled {
 
 
     let cID = 0;
-    let countID=0;
+    let countID = 0;
     //% blockId="OLED_setImage" block="set character: %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
     //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_setImage(myArray: number[], myType: patternType, myPositive: positiveType, myID: number): void {
@@ -226,14 +226,14 @@ namespace lumexoled {
         else if (character == array2)
             cID = mycharacter.type3;
         else if (character == array3)
-            cID = mycharacter.type4;           
-       /* 
-       if(count[cID]==0)
-        {
-            OLED_setImage(character, 0xc3, 1, cID);
-            count[cID]++;
-        }
-        */
+            cID = mycharacter.type4;
+        /* 
+        if(count[cID]==0)
+         {
+             OLED_setImage(character, 0xc3, 1, cID);
+             count[cID]++;
+         }
+         */
         OLED_showImage(0xc7, cID, x, y, 0xd1);
     }
 }
