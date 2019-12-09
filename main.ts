@@ -14,6 +14,8 @@ namespace lumexoled {
         yes = 0xd1,
     }
     export enum patternType {
+        //% block="16*16"
+        type3 = 0xc2,
         //% block="32*32"
         type4 = 0xc3
     }
@@ -59,13 +61,13 @@ namespace lumexoled {
     array3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 252, 15, 255, 255, 248, 3, 255, 255, 224, 1, 255, 255, 192, 0, 255, 255, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     export enum mycharacter {
         //%block="parachute1"
-        type1 = 0,
+        type1 = 1,
         //%block="parachute2"
-        type2 = 1,
+        type2 = 2,
         //%block="parachute3"
-        type3 = 2,
+        type3 = 3,
         //%block="boat"
-        type4 = 3,
+        type4 = 4,
     }
     //% blockId="character" block="%del"
     //weight=95 blockGap=0  advanced=true
@@ -77,6 +79,12 @@ namespace lumexoled {
             case mycharacter.type4: return array3;
         }
     }
+    /** 
+     * Setup Lumex Oled Tx Rx to micro:bit pins.
+     * 設定Lumex Oled的Tx、Rx連接腳位
+     * @param pinRX to pinRX ,eg: SerialPin.P14
+     * @param pinTX to pinTX ,eg: SerialPin.P13
+    */
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=100 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
@@ -89,6 +97,7 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(100)
         OLED_clear()
+        
     }
 
     //% weight=94 blockGap=0
@@ -126,7 +135,13 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(10)
     }
+
+
+
+
+
     let cID = 0;
+    let countID=0;
     //% blockId="OLED_setImage" block="set character: %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
     //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_setImage(myArray: number[], myType: patternType, myPositive: positiveType, myID: number): void {
@@ -145,8 +160,28 @@ namespace lumexoled {
             //basic.pause(10)
         }
         serial.readUntil("E")
-        basic.pause(10)
+        //basic.pause(10)
     }
+    //% blockId="setImage" block="set character: %myArray"
+    //% weight=50 blockGap=0 blockExternalInputs=true
+    export function setImage(myArray: number[]): void {
+        if (myArray == array0)
+            countID = mycharacter.type1;
+        else if (myArray == array1)
+            countID = mycharacter.type2;
+        else if (myArray == array2)
+            countID = mycharacter.type3;
+        else if (myArray == array3)
+            countID = mycharacter.type4;
+        OLED_setImage(myArray, 0xc3, 1, countID);
+    }
+
+
+
+
+
+
+
     //% blockId="OLED_showImage" block="show image type: %myType|image ID: %myID|on x: %x|y: %y|display %showState"
     //% weight=82 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_showImage(myType: imageType, myID: number, x: number, y: number, showState: showNow): void {
@@ -179,8 +214,10 @@ namespace lumexoled {
         }
     }
     */
+    let count: number[]
+    count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     //% blockId="move" block="character: %character's x-axis: %x| y-axis: %y"
-    //% weight=98 blockGap=0
+    //% weight=49 blockGap=0
     export function move(character: number[], x: number, y: number): void {
         if (character == array0)
             cID = mycharacter.type1;
@@ -189,7 +226,14 @@ namespace lumexoled {
         else if (character == array2)
             cID = mycharacter.type3;
         else if (character == array3)
-            cID = mycharacter.type4;
-        OLED_showImage(0xc7, cID, x, y, 0xd1)
+            cID = mycharacter.type4;           
+       /* 
+       if(count[cID]==0)
+        {
+            OLED_setImage(character, 0xc3, 1, cID);
+            count[cID]++;
+        }
+        */
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
     }
 }
