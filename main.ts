@@ -232,4 +232,71 @@ namespace lumexoled {
          */
         OLED_showImage(0xc7, cID, x, y, 0xd1);
     }
+    let y = 0;
+    let mode = 0;
+    export function rand(xr: number): number {
+        if (xr + 20 > 100)
+            mode = Math.randomRange(1, 2);
+        else if (xr - 20 < 0)
+            mode = Math.randomRange(2, 3);
+        else
+            mode = Math.randomRange(1, 3);
+        if (mode == 1)
+            return xr - 20;
+        else if (mode == 2)
+            return xr;
+        else
+            return xr + 20;
+    }
+    let charID = 0;
+    export function judge(n: number[]): number{
+        if (n == array0)
+        {
+            charID = mycharacter.type1;
+            return charID;
+        }
+        else if (n == array1)
+        {
+            charID = mycharacter.type2;
+            return charID;
+        }
+            
+        else if (n == array2)
+        {
+            charID = mycharacter.type3;
+            return charID;
+        }
+        else 
+        {
+            charID = mycharacter.type4;
+            return charID;
+        }   
+    }
+    //% blockId="movetest" block="character1: %character1 character2: %character2 character3: %character3 start-x: %x"
+    //% weight=50 blockGap=0
+    export function movetest(character1: number[], character2: number[], character3: number[], x: number): void {
+        cID = judge(character1);
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
+        basic.pause(200);
+        lumexoled.OLED_clear();
+        x = rand(x); y = 5;
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
+        basic.pause(200);
+        lumexoled.OLED_clear();
+        x = rand(x); y = 10;
+        cID = judge(character2);
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
+        basic.pause(200);
+        lumexoled.OLED_clear();
+        x = rand(x); y = 15;
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
+        basic.pause(200);
+        lumexoled.OLED_clear();
+        x = rand(x); y = 20;
+        cID = judge(character3);
+        OLED_showImage(0xc7, cID, x, y, 0xd1);
+        basic.pause(200);
+        lumexoled.OLED_clear();
+        y = 0;
+    }
 }
