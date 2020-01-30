@@ -326,48 +326,64 @@ namespace lumexoled {
           putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
-        x = rand(x); xc = x; y = 20;
+        //x = rand(x); 
+        xc = x; y = 20;
         cID = judge(character3);
-        addscore(xc);
         OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
-          putNumber(score, 0x81, 0, 0, 0xd1);
-        basic.pause(f+500);
+        basic.pause(f);
+        putNumber(score, 0x81, 0, 0, 0xd1);
+        addscore(xc);
+        //basic.pause(f+500);
         lumexoled.OLED_clear();
         y = 0;
     }
     let ccID = 0;
+    let dontmove = 0;
     //%blockId="catchright" block="right catcher: %catcher spacing: %space"
     //%weight=30 blockGap=0
     export function catchright(catcher: number[], space: number): void {
+        if(dontmove == 0){
         ccID = judge(catcher);
         lumexoled.OLED_clear();
         OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
         OLED_showImage(0xc7, cID, xc, y, 0xd1);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         if (xcatcher + space >= 100)
             xcatcher = 100;
         else
             xcatcher += space;
+        }
     }
     //%blockId="catchleft" block="left catcher: %catcher spacing: %space"
     //%weight=29 blockGap=0
     export function catchleft(catcher: number[], space: number): void {
+        if (dontmove == 0) {
         ccID = judge(catcher);
         lumexoled.OLED_clear();
         OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
         OLED_showImage(0xc7, cID, xc, y, 0xd1);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         if (xcatcher - space <= 0)
             xcatcher = 0;
         else
             xcatcher -= space;
+        }
     }
     export function addscore(x: number): void {
-        if (xc >= xcatcher-15 && xc<= xcatcher+15)
+        dontmove=1;
+        if (xc >= xcatcher-15 && xc <= xcatcher+15)
+        {
             ++score;
+            basic.pause(750);
+            dontmove=0;
+        }
         else
         {
+            lumexoled.OLED_clear();
             OLED_showImage(0xc7,5,xc,50, 0xd1);
-            basic.pause(1000);
+            basic.pause(750);
+            dontmove=0;
         }
     }
 }
