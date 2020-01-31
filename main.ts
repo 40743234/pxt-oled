@@ -70,7 +70,7 @@ namespace lumexoled {
         type5 = 5
     }
     //% blockId="character" block="%del"
-    //weight=95 blockGap=0  advanced=true
+    //weight=100 blockGap=0  advanced=true
     export function delimiters(del: mycharacter): number[] {
         switch (del) {
             case mycharacter.type1: return array0;
@@ -87,7 +87,7 @@ namespace lumexoled {
      * @param pinTX to pinTX ,eg: SerialPin.P13
     */
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
-    //% weight=100 blockExternalInputs=true blockGap=0
+    //% weight=99 blockExternalInputs=true blockGap=0
     export function OLED_setSerial(pinRX: SerialPin, pinTX: SerialPin, br: BaudRate): void {
         basic.pause(100)
         serial.redirect(
@@ -101,7 +101,7 @@ namespace lumexoled {
 
     }
 
-    //% weight=94 blockGap=0
+    //% weight=98 blockGap=0
     export function OLED_display(): void {
         let myBuff1 = pins.createBuffer(1)
         myBuff1.setNumber(NumberFormat.UInt8BE, 0, 0xd1)
@@ -110,7 +110,7 @@ namespace lumexoled {
         basic.pause(10)
     }
     //% blockId="OLED_clear" block="OLED clear"
-    //% weight=93 blockGap=0
+    //% weight=97 blockGap=0
     export function OLED_clear(): void {
         let myBuff1 = pins.createBuffer(1)
         myBuff1.setNumber(NumberFormat.UInt8BE, 0, 0xd0)
@@ -119,7 +119,7 @@ namespace lumexoled {
         basic.pause(20)
     }
     //% blockId="OLED_on" block="turn OLED on"
-    //% weight=92 blockGap=0
+    //% weight=96 blockGap=0
     export function OLED_on(): void {
         let myBuff1 = pins.createBuffer(1)
         myBuff1.setNumber(NumberFormat.UInt8BE, 0, 0xf1)
@@ -128,7 +128,7 @@ namespace lumexoled {
         basic.pause(10)
     }
     //% blockId="OLED_off" block="turn OLED off"
-    //% weight=91 blockGap=0
+    //% weight=95 blockGap=0
     export function OLED_off(): void {
         let myBuff1 = pins.createBuffer(1)
         myBuff1.setNumber(NumberFormat.UInt8BE, 0, 0xf0)
@@ -181,7 +181,7 @@ namespace lumexoled {
     let cID = 0;
     let countID = 0;
     //% blockId="OLED_setImage" block="set character: %myArray|image type: %myType|positive or negative %myPositive|to OLED memory image ID: %myID"
-    //% weight=83 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
+    //% weight=94 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_setImage(myArray: number[], myType: patternType, myPositive: positiveType, myID: number): void {
         let myBuff2 = pins.createBuffer(2)
         let myBuff1 = pins.createBuffer(1)
@@ -201,7 +201,7 @@ namespace lumexoled {
         //basic.pause(10)
     }
     //% blockId="setImage" block="set character: %myArray"
-    //% weight=50 blockGap=0 blockExternalInputs=true
+    //% weight=93 blockGap=0 blockExternalInputs=true
     export function setImage(myArray: number[]): void {
         if (myArray == array0)
             countID = mycharacter.type1;
@@ -223,7 +223,7 @@ namespace lumexoled {
 
 
     //% blockId="OLED_showImage" block="show image type: %myType|image ID: %myID|on x: %x|y: %y|display %showState"
-    //% weight=82 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
+    //% weight=92 blockGap=0 blockExternalInputs=true myID.min=0 myID.max=9 
     export function OLED_showImage(myType: imageType, myID: number, x: number, y: number, showState: showNow): void {
         let myBuff4 = pins.createBuffer(4)
         myBuff4.setNumber(NumberFormat.UInt8BE, 0, myType)
@@ -240,7 +240,7 @@ namespace lumexoled {
     let count: number[]
     count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     //% blockId="move" block="character: %character's x-axis: %x| y-axis: %y"
-    //% weight=49 blockGap=0
+    //% weight=91 blockGap=0
     export function move(character: number[], x: number, y: number): void {
         if (character == array0)
             cID = mycharacter.type1;
@@ -295,33 +295,33 @@ namespace lumexoled {
             return charID;
         }
     }
-    let xcatcher = 50;
+    let xmain = 50;
     let xc = 0;
     //% blockId="moveready" block="character1: %character1 character2: %character2 character3: %character3 start-x: %x frequency(ms): %f"
-    //% weight=50 blockGap=0 f.min=100 f.max=3000
+    //% weight=90 blockGap=0 f.min=100 f.max=3000
     export function moveready(character1: number[], character2: number[], character3: number[], x: number, f: number): void {
         cID = judge(character1);
         xc = x;
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
          putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 5;
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
          putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 10;
         cID = judge(character2);
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
          putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 15;
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
           putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
@@ -329,7 +329,7 @@ namespace lumexoled {
         //x = rand(x); 
         xc = x; y = 20;
         cID = judge(character3);
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
         basic.pause(f);
         putNumber(score, 0x81, 0, 0, 0xd1);
@@ -340,50 +340,100 @@ namespace lumexoled {
     }
     let ccID = 0;
     let dontmove = 0;
+    let dcmode = 0;
     //%blockId="catchright" block="right catcher: %catcher spacing: %space"
-    //%weight=30 blockGap=0
+    //%weight=89 blockGap=0
     export function catchright(catcher: number[], space: number): void {
+        dcmode = 1;
         if(dontmove == 0){
         ccID = judge(catcher);
         lumexoled.OLED_clear();
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, xc, y, 0xd1);
         putNumber(score, 0x81, 0, 0, 0xd1);
-        if (xcatcher + space >= 100)
-            xcatcher = 100;
+        if (xmain + space >= 100)
+            xmain = 100;
         else
-            xcatcher += space;
+            xmain += space;
         }
     }
     //%blockId="catchleft" block="left catcher: %catcher spacing: %space"
-    //%weight=29 blockGap=0
+    //%weight=88 blockGap=0
     export function catchleft(catcher: number[], space: number): void {
+        dcmode = 1;
         if (dontmove == 0) {
         ccID = judge(catcher);
         lumexoled.OLED_clear();
-        OLED_showImage(0xc7, ccID, xcatcher, 50, 0xd1);
+        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, xc, y, 0xd1);
         putNumber(score, 0x81, 0, 0, 0xd1);
-        if (xcatcher - space <= 0)
-            xcatcher = 0;
+        if (xmain - space <= 0)
+            xmain = 0;
         else
-            xcatcher -= space;
+            xmain -= space;
+        }
+    }
+    //%blockId="dodgeright" block="right dodger: %dodger spacing: %space"
+    //%weight=87 blockGap=0
+    export function dodgeright(dodger: number[], space: number): void {
+        dcmode = 2;
+        if (dontmove == 0) {
+            ccID = judge(dodger);
+            lumexoled.OLED_clear();
+            OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
+            OLED_showImage(0xc7, cID, xc, y, 0xd1);
+            putNumber(score, 0x81, 0, 0, 0xd1);
+            if (xmain + space >= 100)
+                xmain = 100;
+            else
+                xmain += space;
+        }
+    }
+    //%blockId="dodgeleft" block="left dodger: %dodger spacing: %space"
+    //%weight=86 blockGap=0
+    export function dodgeleft(dodger: number[], space: number): void {
+        dcmode = 2;
+        if (dontmove == 0) {
+            ccID = judge(dodger);
+            lumexoled.OLED_clear();
+            OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
+            OLED_showImage(0xc7, cID, xc, y, 0xd1);
+            putNumber(score, 0x81, 0, 0, 0xd1);
+            if (xmain - space <= 0)
+                xmain = 0;
+            else
+                xmain -= space;
         }
     }
     export function addscore(x: number): void {
-        dontmove=1;
-        if (xc >= xcatcher-15 && xc <= xcatcher+15)
+        dontmove = 1;
+        if(dcmode==1)
         {
-            ++score;
-            basic.pause(750);
-            dontmove=0;
+            if (xc >= xmain - 15 && xc <= xmain + 15) {
+                ++score;
+                basic.pause(750);
+                dontmove = 0;
+            }
+            else {
+                lumexoled.OLED_clear();
+                OLED_showImage(0xc7, 5, xc, 50, 0xd1);
+                basic.pause(750);
+                dontmove = 0;
+            }
         }
-        else
+        else 
         {
-            lumexoled.OLED_clear();
-            OLED_showImage(0xc7,5,xc,50, 0xd1);
-            basic.pause(750);
-            dontmove=0;
+            if (xc < xmain - 15 || xc > xmain + 15) {
+                ++score;
+                basic.pause(750);
+                dontmove = 0;
+            }
+            else {
+                lumexoled.OLED_clear();
+                //OLED_showImage(0xc7, 5, xc, 50, 0xd1);
+                basic.pause(750);
+                dontmove = 0;
+            }  
         }
     }
 }
