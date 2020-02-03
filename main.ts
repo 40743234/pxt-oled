@@ -12,6 +12,8 @@ namespace lumexoled {
     export enum showNow {
         //% block="now"
         yes = 0xd1,
+        //% block="later"
+        no = 0x00
     }
     export enum patternType {
         //% block="32*32"
@@ -53,7 +55,7 @@ namespace lumexoled {
     array1 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 63, 224, 0, 0, 119, 248, 0, 0, 231, 252, 0, 1, 207, 238, 0, 1, 255, 238, 0, 1, 255, 255, 0, 1, 4, 127, 0, 0, 128, 7, 0, 0, 0, 3, 0, 0, 33, 194, 0, 0, 3, 240, 0, 0, 3, 248, 0, 0, 1, 160, 0, 0, 29, 192, 0, 0, 11, 248, 0, 0, 1, 232, 0, 0, 5, 192, 0, 0, 6, 192, 0, 0, 0, 64, 0, 0, 0, 112, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let array2: number[]
     array2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 192, 0, 0, 3, 224, 0, 0, 3, 248, 0, 0, 1, 112, 0, 0, 29, 128, 0, 0, 31, 144, 0, 0, 1, 252, 0, 0, 1, 192, 0, 0, 7, 192, 0, 0, 6, 64, 0, 0, 0, 96, 0, 0, 0, 112, 0, 0, 0, 0, 0]
-    let array3: number[] 
+    let array3: number[]
     array3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 252, 15, 255, 255, 248, 3, 255, 255, 224, 1, 255, 255, 192, 0, 255, 255, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let array4: number[]
     array4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 115, 142, 0, 0, 3, 224, 0, 0, 7, 192, 0, 1, 139, 128, 0, 0, 31, 184, 0, 0, 7, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -171,6 +173,23 @@ namespace lumexoled {
             if (showState == 0xd1) {
                 OLED_display()
             }
+        }
+    }
+    export function OLED_drawCircle(myFilled: filledType, myPositive: positiveType, x0: number, y0: number, radius: number, showState: showNow): void {
+        let myBuff5 = pins.createBuffer(5)
+        if (myFilled == 0)
+            myBuff5.setNumber(NumberFormat.Int8BE, 0, 0x94)
+        else
+            myBuff5.setNumber(NumberFormat.Int8BE, 0, 0x95)
+        myBuff5.setNumber(NumberFormat.Int8BE, 1, x0)
+        myBuff5.setNumber(NumberFormat.Int8BE, 2, y0)
+        myBuff5.setNumber(NumberFormat.Int8BE, 3, radius)
+        myBuff5.setNumber(NumberFormat.Int8BE, 4, myPositive)
+        serial.writeBuffer(myBuff5)
+        serial.readUntil("E")
+        basic.pause(10)
+        if (showState == 0xd1) {
+            OLED_display()
         }
     }
     let score = 0;
@@ -297,6 +316,7 @@ namespace lumexoled {
     }
     let xmain = 50;
     let xc = 0;
+    //let life = 3;
     //% blockId="moveready" block="character1: %character1 character2: %character2 character3: %character3 start-x: %x frequency(ms): %f"
     //% weight=90 blockGap=0 f.min=100 f.max=3000
     export function moveready(character1: number[], character2: number[], character3: number[], x: number, f: number): void {
@@ -304,26 +324,30 @@ namespace lumexoled {
         xc = x;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
-         putNumber(score, 0x81, 0, 0, 0xd1);
+        // showlife(life);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 5;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
-         putNumber(score, 0x81, 0, 0, 0xd1);
+        // showlife(life);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 10;
         cID = judge(character2);
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
-         putNumber(score, 0x81, 0, 0, 0xd1);
+        // showlife(life);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         x = rand(x); xc = x; y = 15;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
-          putNumber(score, 0x81, 0, 0, 0xd1);
+        // showlife(life);
+        putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
         lumexoled.OLED_clear();
         //x = rand(x); 
@@ -331,6 +355,7 @@ namespace lumexoled {
         cID = judge(character3);
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        // showlife(life);
         basic.pause(f);
         putNumber(score, 0x81, 0, 0, 0xd1);
         addscore(xc);
@@ -345,16 +370,16 @@ namespace lumexoled {
     //%weight=89 blockGap=0
     export function catchright(catcher: number[], space: number): void {
         dcmode = 1;
-        if(dontmove == 0){
-        ccID = judge(catcher);
-        lumexoled.OLED_clear();
-        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
-        OLED_showImage(0xc7, cID, xc, y, 0xd1);
-        putNumber(score, 0x81, 0, 0, 0xd1);
-        if (xmain + space >= 100)
-            xmain = 100;
-        else
-            xmain += space;
+        if (dontmove == 0) {
+            ccID = judge(catcher);
+            lumexoled.OLED_clear();
+            OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
+            OLED_showImage(0xc7, cID, xc, y, 0xd1);
+            putNumber(score, 0x81, 0, 0, 0xd1);
+            if (xmain + space >= 100)
+                xmain = 100;
+            else
+                xmain += space;
         }
     }
     //%blockId="catchleft" block="left catcher: %catcher spacing: %space"
@@ -362,15 +387,15 @@ namespace lumexoled {
     export function catchleft(catcher: number[], space: number): void {
         dcmode = 1;
         if (dontmove == 0) {
-        ccID = judge(catcher);
-        lumexoled.OLED_clear();
-        OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
-        OLED_showImage(0xc7, cID, xc, y, 0xd1);
-        putNumber(score, 0x81, 0, 0, 0xd1);
-        if (xmain - space <= 0)
-            xmain = 0;
-        else
-            xmain -= space;
+            ccID = judge(catcher);
+            lumexoled.OLED_clear();
+            OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
+            OLED_showImage(0xc7, cID, xc, y, 0xd1);
+            putNumber(score, 0x81, 0, 0, 0xd1);
+            if (xmain - space <= 0)
+                xmain = 0;
+            else
+                xmain -= space;
         }
     }
     //%blockId="dodgeright" block="right dodger: %dodger spacing: %space"
@@ -407,8 +432,7 @@ namespace lumexoled {
     }
     export function addscore(x: number): void {
         dontmove = 1;
-        if(dcmode==1)
-        {
+        if (dcmode == 1) {
             if (xc >= xmain - 15 && xc <= xmain + 15) {
                 ++score;
                 basic.pause(750);
@@ -418,11 +442,11 @@ namespace lumexoled {
                 lumexoled.OLED_clear();
                 OLED_showImage(0xc7, 5, xc, 50, 0xd1);
                 basic.pause(750);
+                // life--;
                 dontmove = 0;
             }
         }
-        else 
-        {
+        else {
             if (xc < xmain - 15 || xc > xmain + 15) {
                 ++score;
                 basic.pause(750);
@@ -432,8 +456,35 @@ namespace lumexoled {
                 lumexoled.OLED_clear();
                 //OLED_showImage(0xc7, 5, xc, 50, 0xd1);
                 basic.pause(750);
+                // life--;
                 dontmove = 0;
-            }  
+            }
+        }
+    }
+
+    export function showlife(li: number): void{
+        if(li == 3)
+        {
+            OLED_drawCircle(1, 1, 1, 10, 1, 0x00);
+            OLED_drawCircle(1, 1, 4, 10, 1, 0x00);
+            OLED_drawCircle(1, 1, 7, 10, 1, 0x00);
+            lumexoled.OLED_display();
+        }
+        else if(li == 2)
+        {
+            OLED_drawCircle(1, 1, 1, 10, 1, 0x00);
+            OLED_drawCircle(1, 1, 4, 10, 1, 0x00);
+            lumexoled.OLED_display();
+        }
+        else if(li == 1)
+        {
+            OLED_drawCircle(1, 1, 1, 10, 1, 0xd1);
+        }
+        else 
+        {
+            OLED_drawCircle(1, 1, 1, 10, 1, 0xd1); //待更改 要改成Game Over 字串
+            basic.pause(1500);
+            OLED_off();
         }
     }
 }
