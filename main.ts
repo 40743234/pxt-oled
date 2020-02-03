@@ -59,6 +59,10 @@ namespace lumexoled {
     array3 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31, 255, 255, 252, 15, 255, 255, 248, 3, 255, 255, 224, 1, 255, 255, 192, 0, 255, 255, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let array4: number[]
     array4 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 115, 142, 0, 0, 3, 224, 0, 0, 7, 192, 0, 1, 139, 128, 0, 0, 31, 184, 0, 0, 7, 224, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let array5: number[]
+    array5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 7, 0, 0, 0, 35, 128, 0, 0, 107, 248, 0, 0, 127, 248, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let array6: number[]
+    array6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 128, 0, 0, 1, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 7, 224, 0, 0, 15, 240, 0, 0, 15, 240, 0, 0, 7, 224, 0, 0, 7, 224, 0, 0, 7, 224, 0, 0, 3, 224, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 1, 128, 0, 0, 0, 0, 0]
     export enum mycharacter {
         //%block="parachute1"
         type1 = 1,
@@ -69,7 +73,11 @@ namespace lumexoled {
         //%block="boat"
         type4 = 4,
         //%block="die"
-        type5 = 5
+        type5 = 5,
+        //%block="squash"
+        type6 = 6,
+        //%block="missile"
+        type7 = 7
     }
     //% blockId="character" block="%del"
     //weight=100 blockGap=0  advanced=true
@@ -80,6 +88,8 @@ namespace lumexoled {
             case mycharacter.type3: return array2;
             case mycharacter.type4: return array3;
             case mycharacter.type5: return array4;
+            case mycharacter.type6: return array5;
+            case mycharacter.type7: return array6;
         }
     }
     /** 
@@ -232,6 +242,10 @@ namespace lumexoled {
             countID = mycharacter.type4;
         else if (myArray == array4)
             countID = mycharacter.type5;
+        else if (myArray == array5)
+            countID = mycharacter.type6;
+        else if (myArray == array6)
+            countID = mycharacter.type7;
         OLED_setImage(myArray, 0xc3, 1, countID);
     }
 
@@ -269,6 +283,12 @@ namespace lumexoled {
             cID = mycharacter.type3;
         else if (character == array3)
             cID = mycharacter.type4;
+        else if (character == array4)
+            cID = mycharacter.type5;
+        else if (character == array5)
+            cID = mycharacter.type6;
+        else if (character == array6)
+            cID = mycharacter.type7;
         /* 
         if(count[cID]==0)
          {
@@ -310,7 +330,7 @@ namespace lumexoled {
             return charID;
         }
         else {
-            charID = mycharacter.type4;
+            charID = mycharacter.type7;
             return charID;
         }
     }
@@ -454,7 +474,7 @@ namespace lumexoled {
             }
             else {
                 lumexoled.OLED_clear();
-                //OLED_showImage(0xc7, 5, xc, 50, 0xd1);
+                OLED_showImage(0xc7, 6, xc, 50, 0xd1);
                 basic.pause(750);
                 // life--;
                 dontmove = 0;
