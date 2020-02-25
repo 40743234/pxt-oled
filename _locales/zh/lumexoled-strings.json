@@ -31,5 +31,5 @@
     "lumexoled.catchright|block":"設定接取者角色向右移動 %catcher|每步間隔 %space",
     "lumexoled.catchleft|block":"設定接取者角色向左移動 %catcher|每步間隔 %space",
     "lumexoled.dodgeright|block":"設定閃躲者角色向右移動 %dodger|每步間隔 %space",
-    "lumexoled.dodgeleft|block":"設定閃躲者角色向左移動 %dodger|每步間隔 %space",
+    "lumexoled.dodgeleft|block":"設定閃躲者角色向左移動 %dodger|每步間隔 %space"
 }
