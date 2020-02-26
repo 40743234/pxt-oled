@@ -29,8 +29,8 @@
     "lumexoled.OLED_showImage|block":"設定圖像大小為 %myType|OLED記憶體內部ID號碼為 %myID|的圖像顯示在x座標(0~127) %x|y座標(0~63) %y|何時顯示 %showState",
     "lumexoled.move|block":"調整圖像角色 %character|X軸座標 %x|Y軸座標 %y",
     "lumexoled.moveready|block":"設定遊戲主程式角色1 %character1|角色2 %character2|角色3 %character3|起始x座標(0~100) %x|速度頻率(100~3000毫秒) %f",
-    "lumexoled.catchright|block":"設定接取者角色向右移動 %catcher|每步間隔 %space",
-    "lumexoled.catchleft|block":"設定接取者角色向左移動 %catcher|每步間隔 %space",
-    "lumexoled.dodgeright|block":"設定閃躲者角色向右移動 %dodger|每步間隔 %space",
-    "lumexoled.dodgeleft|block":"設定閃躲者角色向左移動 %dodger|每步間隔 %space"
+    "lumexoled.catchright|block":"設定接取者角色 %catcher|向右移動每步間隔(10~40) %space",
+    "lumexoled.catchleft|block":"設定接取者角色 %catcher|向左移動每步間隔(10~40) %space",
+    "lumexoled.dodgeright|block":"設定閃躲者角色 %dodger|向右移動每步間隔(10~40) %space",
+    "lumexoled.dodgeleft|block":"設定閃躲者角色 %dodger|向左移動每步間隔(10~40) %space"
 }
