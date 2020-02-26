@@ -387,7 +387,7 @@ namespace lumexoled {
     let dontmove = 0;
     let dcmode = 0;
     //%blockId="catchright" block="right catcher: %catcher spacing: %space"
-    //%weight=89 blockGap=0
+    //%weight=89 blockGap=0 space.min=10 space.max=40
     export function catchright(catcher: number[], space: number): void {
         dcmode = 1;
         if (dontmove == 0) {
@@ -403,7 +403,7 @@ namespace lumexoled {
         }
     }
     //%blockId="catchleft" block="left catcher: %catcher spacing: %space"
-    //%weight=88 blockGap=0
+    //%weight=88 blockGap=0 space.min=10 space.max=40
     export function catchleft(catcher: number[], space: number): void {
         dcmode = 1;
         if (dontmove == 0) {
@@ -419,7 +419,7 @@ namespace lumexoled {
         }
     }
     //%blockId="dodgeright" block="right dodger: %dodger spacing: %space"
-    //%weight=87 blockGap=0
+    //%weight=87 blockGap=0 space.min=10 space.max=40
     export function dodgeright(dodger: number[], space: number): void {
         dcmode = 2;
         if (dontmove == 0) {
@@ -435,7 +435,7 @@ namespace lumexoled {
         }
     }
     //%blockId="dodgeleft" block="left dodger: %dodger spacing: %space"
-    //%weight=86 blockGap=0
+    //%weight=86 blockGap=0 space.min=10 space.max=40
     export function dodgeleft(dodger: number[], space: number): void {
         dcmode = 2;
         if (dontmove == 0) {
