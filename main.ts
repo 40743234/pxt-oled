@@ -329,7 +329,19 @@ namespace lumexoled {
             charID = mycharacter.type3;
             return charID;
         }
-        else {
+        else if (n == array3){
+            charID = mycharacter.type4;
+            return charID;
+        }
+        else if (n == array4) {
+            charID = mycharacter.type5;
+            return charID;
+        }
+        else if (n == array5) {
+            charID = mycharacter.type6;
+            return charID;
+        }
+        else  {
             charID = mycharacter.type7;
             return charID;
         }
@@ -344,6 +356,7 @@ namespace lumexoled {
         xc = x;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        music.playTone(698, music.beat(BeatFraction.Quarter))
         // showlife(life);
         putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
@@ -351,6 +364,7 @@ namespace lumexoled {
         x = rand(x); xc = x; y = 5;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        music.playTone(698, music.beat(BeatFraction.Quarter))
         // showlife(life);
         putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
@@ -359,6 +373,7 @@ namespace lumexoled {
         cID = judge(character2);
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        music.playTone(698, music.beat(BeatFraction.Quarter))
         // showlife(life);
         putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
@@ -366,6 +381,7 @@ namespace lumexoled {
         x = rand(x); xc = x; y = 15;
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        music.playTone(698, music.beat(BeatFraction.Quarter))
         // showlife(life);
         putNumber(score, 0x81, 0, 0, 0xd1);
         basic.pause(f);
@@ -375,6 +391,7 @@ namespace lumexoled {
         cID = judge(character3);
         OLED_showImage(0xc7, ccID, xmain, 50, 0xd1);
         OLED_showImage(0xc7, cID, x, y, 0xd1);
+        music.playTone(698, music.beat(BeatFraction.Quarter))
         // showlife(life);
         basic.pause(f);
         putNumber(score, 0x81, 0, 0, 0xd1);
@@ -461,7 +478,14 @@ namespace lumexoled {
             else {
                 lumexoled.OLED_clear();
                 OLED_showImage(0xc7, 5, xc, 50, 0xd1);
-                basic.pause(750);
+                music.playTone(494, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(659, music.beat(BeatFraction.Half))
+                music.playTone(587, music.beat(BeatFraction.Half))
+                music.playTone(523, music.beat(BeatFraction.Half))
+                basic.pause(500);
                 // life--;
                 dontmove = 0;
             }
@@ -475,33 +499,36 @@ namespace lumexoled {
             else {
                 lumexoled.OLED_clear();
                 OLED_showImage(0xc7, 6, xc, 50, 0xd1);
-                basic.pause(750);
+                music.playTone(494, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(698, music.beat(BeatFraction.Half))
+                music.playTone(659, music.beat(BeatFraction.Half))
+                music.playTone(587, music.beat(BeatFraction.Half))
+                music.playTone(523, music.beat(BeatFraction.Half))
+                basic.pause(500);
                 // life--;
                 dontmove = 0;
             }
         }
     }
 
-    export function showlife(li: number): void{
-        if(li == 3)
-        {
+    export function showlife(li: number): void {
+        if (li == 3) {
             OLED_drawCircle(1, 1, 1, 10, 1, 0x00);
             OLED_drawCircle(1, 1, 4, 10, 1, 0x00);
             OLED_drawCircle(1, 1, 7, 10, 1, 0x00);
             lumexoled.OLED_display();
         }
-        else if(li == 2)
-        {
+        else if (li == 2) {
             OLED_drawCircle(1, 1, 1, 10, 1, 0x00);
             OLED_drawCircle(1, 1, 4, 10, 1, 0x00);
             lumexoled.OLED_display();
         }
-        else if(li == 1)
-        {
+        else if (li == 1) {
             OLED_drawCircle(1, 1, 1, 10, 1, 0xd1);
         }
-        else 
-        {
+        else {
             OLED_drawCircle(1, 1, 1, 10, 1, 0xd1); //待更改 要改成Game Over 字串
             basic.pause(1500);
             OLED_off();
