@@ -95,8 +95,8 @@ namespace lumexoled {
     /** 
      * Setup Lumex Oled Tx Rx to micro:bit pins.
      * 設定Lumex Oled的Tx、Rx連接腳位
-     * @param pinRX to pinRX ,eg: SerialPin.P14
-     * @param pinTX to pinTX ,eg: SerialPin.P13
+     * @param pinRX to pinRX ,eg: SerialPin.P1
+     * @param pinTX to pinTX ,eg: SerialPin.P2
     */
     //% blockId="OLED_setSerial" block="set OLED RX to %pinRX|TX to %pinTX|BaudRate %br"
     //% weight=99 blockExternalInputs=true blockGap=0
