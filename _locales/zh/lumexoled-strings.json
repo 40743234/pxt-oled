@@ -18,7 +18,6 @@
     "lumexoled.mycharacter.type5|block":"死亡的人",
     "lumexoled.mycharacter.type6|block":"被壓扁的人",
     "lumexoled.mycharacter.type7|block":"飛彈",
-    "lumexoled.mycharacter.type8|block":"恐龍",
     "lumexoled.delimiters|block":"%del",
     "lumexoled.OLED_setSerial|block":"設定OLED的RX連接到 %pinRX|TX連接到 %pinTX|連線速率 %br",
     "lumexoled.OLED_display|block":"OLED顯示畫面",
