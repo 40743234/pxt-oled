@@ -79,8 +79,9 @@ namespace lumexoled {
         //%block="squash"
         type6 = 6,
         //%block="missile"
-        type7 = 7
+        type7 = 7,
         //%block="dinosare"
+        type8 = 8
     }
     //% blockId="character" block="%del"
     //weight=100 blockGap=0  advanced=true
