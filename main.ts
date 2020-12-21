@@ -63,6 +63,8 @@ namespace lumexoled {
     array5 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 7, 0, 0, 0, 35, 128, 0, 0, 107, 248, 0, 0, 127, 248, 0, 0, 127, 254, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let array6: number[]
     array6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 128, 0, 0, 1, 128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 7, 224, 0, 0, 15, 240, 0, 0, 15, 240, 0, 0, 7, 224, 0, 0, 7, 224, 0, 0, 7, 224, 0, 0, 3, 224, 0, 0, 3, 192, 0, 0, 3, 192, 0, 0, 1, 128, 0, 0, 0, 0, 0]
+    let array7: number[]
+    array7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 127, 128, 0, 0, 159, 192, 0, 0, 159, 192, 0, 0, 255, 192, 0, 0, 255, 192, 0, 0, 248, 0, 0, 0, 254, 0, 2, 1, 240, 0, 3, 7, 240, 0, 3, 143, 252, 0, 3, 159, 244, 0, 3, 255, 240, 0, 1, 255, 240, 0, 0, 255, 224, 0, 0, 63, 192, 0, 0, 63, 128, 0, 0, 31, 128, 0, 0, 29, 128, 0, 0, 16, 128, 0, 0, 24, 192, 0, 0, 0, 0, 0]
     export enum mycharacter {
         //%block="parachute1"
         type1 = 1,
@@ -78,6 +80,7 @@ namespace lumexoled {
         type6 = 6,
         //%block="missile"
         type7 = 7
+        //%block="dinosaur"
     }
     //% blockId="character" block="%del"
     //weight=100 blockGap=0  advanced=true
@@ -90,6 +93,7 @@ namespace lumexoled {
             case mycharacter.type5: return array4;
             case mycharacter.type6: return array5;
             case mycharacter.type7: return array6;
+            case mycharacter.type8: return array7;
         }
     }
     /** 
@@ -246,6 +250,8 @@ namespace lumexoled {
             countID = mycharacter.type6;
         else if (myArray == array6)
             countID = mycharacter.type7;
+        else if (myArray == array7)
+            countID = mycharacter.type8;
         OLED_setImage(myArray, 0xc3, 1, countID);
     }
 
@@ -289,6 +295,8 @@ namespace lumexoled {
             cID = mycharacter.type6;
         else if (character == array6)
             cID = mycharacter.type7;
+        else if (character == array7)
+            cID = mycharacter.type8;
         /* 
         if(count[cID]==0)
          {
@@ -341,8 +349,12 @@ namespace lumexoled {
             charID = mycharacter.type6;
             return charID;
         }
-        else  {
+        else if (n == array6) {
             charID = mycharacter.type7;
+            return charID;
+        }
+        else  {
+            charID = mycharacter.type8;
             return charID;
         }
     }
