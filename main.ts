@@ -153,6 +153,13 @@ namespace lumexoled {
         serial.readUntil("E")
         basic.pause(10)
     }
+    
+    //% blockId="OLED_putNumber" block="OLED put number: %myNumber|size: %mySize|on line: %line|column: %column|display %showState"
+    //% weight=84 blockGap=0 blockExternalInputs=true line.min=0 line.max=7 column.min=0 column.max=20
+    export function putNumber(myNumber: number, mySize: fontSize, line: number, column: number, showState: showNow): void {
+        putString(myNumber.toString(), mySize, line, column, showState)
+    }
+    
     export function putString(myStr: string, mySize: fontSize, line: number, column: number, showState: showNow): void {
         if (myStr.length > 0) {
             //sending = true
